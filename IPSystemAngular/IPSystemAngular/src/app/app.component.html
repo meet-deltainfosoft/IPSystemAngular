@@ -1,0 +1,6 @@
+<app-loader></app-loader>
+<app-navbar *ngIf="currentUrl !== '/login'"></app-navbar>
+
+<app-login *ngIf="currentUrl === '/login'"></app-login>
+
+<router-outlet></router-outlet>

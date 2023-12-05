@@ -1,0 +1,11 @@
+.mat-column-SrNo,
+.mat-column-UserId,
+.mat-column-Name,
+.mat-column-IsAdmin {
+    text-align: left;
+    justify-content: center;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #5c5b5b;
+}

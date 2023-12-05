@@ -1,0 +1,162 @@
+<form [formGroup]="formApproval">
+    <mat-card>
+        <mat-card-header class="example-header mt-2 ">
+            <div class="example-title ">
+                <mat-icon class="example-icon ">gavel</mat-icon>
+                {{dialog_title}}
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-lg-2 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>From Date</mat-label>
+                        <input matInput [matDatepicker]="FromDate" placeholder="dd/MM/yyyy" formControlName="FromDate">
+                        <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #FromDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-2 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>To Date</mat-label>
+                        <input matInput [matDatepicker]="ToDate" placeholder="dd/MM/yyyy" formControlName="ToDate">
+                        <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+                        <mat-datepicker #ToDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-lg-2 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>Plant</mat-label>
+                        <mat-select formControlName="PlantId" placeholder="Plant" required>
+                            <mat-option [value]="'0'">Select All</mat-option>
+                            <mat-option *ngFor="let option of plantList" [value]="option.PlantId">
+                                {{ option.Plant }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+
+
+                <div class="col-lg-2 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>IP</mat-label>
+                        <mat-select formControlName="kaizenId" placeholder="Kaizen" required>
+                            <mat-form-field>
+                                <input class="align-element" placeholder="Search kaizen" matInput required (keyup)="FilterIP($event)" />
+                            </mat-form-field>
+                            <mat-option [value]="'0'">Select All</mat-option>
+                            <mat-option *ngFor="let option of KaizenFilter" [value]="option.KaizenId">
+                                {{ option.Number }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                </div>
+
+                <div class="col-lg-3 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="StatusId" placeholder="Status" required>
+                            <mat-option [value]="'0'">Select All</mat-option>
+                            <mat-option *ngFor="let option of statusList" [value]="option.StatusId">
+                                {{ option.Status }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-1 col-sm-12">
+                    <button mat-flat-button color="primary" class="example-button" (click)="GetAllApprove()" [disabled]="formApproval.invalid">{{btnText}}</button>
+                </div>
+            </div>
+
+            <div class="no-records" *ngIf="_ApprovalTableDataSource && _ApprovalTableDataSource.data && _ApprovalTableDataSource.data.length === 0">
+                No Records Found
+            </div>
+            <div class="row" *ngIf="_ApprovalTableDataSource && _ApprovalTableDataSource.data && _ApprovalTableDataSource.data.length > 0">
+                <mat-divider></mat-divider>
+                <div class="mt-2"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Global Search">
+                    </mat-form-field>
+                </div>
+                <div class="col-12 mat-table-container">
+                    <mat-table [dataSource]="_ApprovalTableDataSource" matSort class="table-width table-bordered">
+                        <ng-container matColumnDef="Number">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2">IP Number
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Number}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="Date">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Date
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Date}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Category">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Category
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Category}} </mat-cell>
+                        </ng-container>
+
+
+
+                        <ng-container matColumnDef="Proposal">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Proposal
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Proposal}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Result">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Result
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Result}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Plant">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Plant
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Plant}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="CostSaving">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> CostSaving
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.CostSaving}} </mat-cell>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="Status">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Status
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Status}} </mat-cell>
+                        </ng-container> -->
+
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef class="col-lg-1"> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="col-lg-1">
+                                <a mat-icon-button (click)="OpenIPForm('GetKaizenById', row.KaizenId, 'Apprval')" matTooltip="Edit Record">
+                                    <mat-icon style="color: #0B3E61;">edit</mat-icon>
+                                </a>
+                            </mat-cell>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="_displayColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="example-element-row"></tr>
+                    </mat-table>
+                    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+                    </mat-paginator>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions class="mt-2">
+
+        </mat-card-actions>
+    </mat-card>
+</form>

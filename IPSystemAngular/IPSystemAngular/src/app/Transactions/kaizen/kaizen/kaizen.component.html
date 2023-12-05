@@ -1,0 +1,98 @@
+<div class="card">
+    <div class="card-header h4">
+        {{ dialog_title }}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <mat-form-field appearance="outline">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Global Search">
+                </mat-form-field>
+
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <!-- <button mat-icon-button class="round-button" (click)="open_kaizen_form('InsertKaizen', '0','IP' )" matTooltip="Add New Record">
+                    <mat-icon class="icon-white ">add</mat-icon>
+                </button> -->
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <button mat-raised-button style="background-color:  #50A85E !important;" class="custom-file-upload mr-2" (click)="ImportExcel()">
+                    <mat-icon>file_upload</mat-icon>
+                    Import
+                  </button>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <button mat-raised-button style="background-color:  #50A85E !important;" class="custom-file-upload mr-2" (click)="ExportEmployeesTemplate()">
+                    <mat-icon>save_alt</mat-icon>
+                    Download Template
+                  </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mat-table-container">
+                <mat-table [dataSource]="_KaizenTableDataSource" matSort class="table-width table-bordered">
+                    <!-- Number Column -->
+                    <ng-container matColumnDef="Number">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> IP Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Number }} </mat-cell>
+                    </ng-container>
+
+                    <!-- Date Column -->
+                    <ng-container matColumnDef="Date">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Date }} </mat-cell>
+                    </ng-container>
+
+
+
+                    <!-- Plant Column -->
+                    <ng-container matColumnDef="Plant">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Plant </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Plant }} </mat-cell>
+                    </ng-container>
+
+                    <!-- CostSaving Column -->
+                    <ng-container matColumnDef="CostSaving">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Cost Saving </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.CostSaving }} </mat-cell>
+                    </ng-container>
+
+                    <!-- Category Column -->
+
+
+                    <ng-container matColumnDef="Category">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Category </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Category }} </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Status">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Status }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef class="col-lg-1 "> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row " class="col-lg-1 ">
+                            <a mat-icon-button (click)="open_kaizen_form('GetKaizenById', row.KaizenId,'IP') " matTooltip="Edit Record">
+                                <mat-icon style="color: #0B3E61; ">edit</mat-icon>
+                            </a>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Header Row -->
+                    <tr mat-header-row *matHeaderRowDef="_displayColumns"></tr>
+
+                    <!-- Data Rows -->
+                    <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="example-element-row"></tr>
+                </mat-table>
+
+                <!-- Paginator -->
+                <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

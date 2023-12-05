@@ -1,0 +1,53 @@
+.overlay {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(74, 74, 74, 0.6);
+    /* Adjust the alpha value as needed */
+    z-index: 99999;
+}
+
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-progress-spinner {
+    animation: spinner-rotate 1s linear infinite, spinner-scale 0.5s ease-in-out infinite;
+    /* Add scale animation */
+    color: #0B6297;
+    /* Set the color to #0B6297 */
+}
+
+@keyframes spinner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner-scale {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        /* Add scale factor to make it grow and shrink */
+    }
+}
+
+.custom-slide-toggle {
+    color: #0B6297;
+    /* Your desired color, e.g., #0B6297 */
+}

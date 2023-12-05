@@ -1,0 +1,11 @@
+.mat-column-FirstName,
+.mat-column-LastName,
+.mat-column-UserName,
+.mat-column-IsAdmin {
+    text-align: left;
+    justify-content: center;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #5c5b5b;
+}

@@ -1,0 +1,249 @@
+.toolbar-item-spacer {
+    flex: 1 1 auto;
+}
+
+.app-container {
+    height: 100%;
+    margin: 0;
+    display: flex;
+}
+
+.app-sidenav {
+    width: 230px;
+}
+
+.app-sidenav-content {
+    flex: 1;
+    padding: 0.5% 0.5% 0;
+    /* Adjust the paddings as needed (top right bottom) */
+}
+
+
+/* Add the following styles to make the content full height */
+
+.mat-sidenav-container,
+.mat-sidenav-content {
+    height: 100%;
+}
+
+.nav-link {
+    display: block;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #0B3E61 !important;
+}
+
+.sidebar-icon {
+    margin-right: 2px !important;
+    color: white !important;
+}
+
+.sidebar-text {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.sidebar-icon1 {
+    margin-left: 0px !important;
+    color: white !important;
+    padding: 0px !important;
+}
+
+.sidebar-text1 {
+    margin-left: 0px !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sidebar-icon2 {
+    margin-left: 0px !important;
+    color: white !important;
+    padding: 0px !important;
+    font-size: 13px !important;
+}
+
+.sidebar-text1 {
+    margin-left: 0px !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+    background-color: #0B3E61;
+    border-bottom: 1px solid black !important;
+}
+
+.user-photo {
+    /* width: 200px; */
+    /* Increase the width as desired */
+    /* height: 180px; */
+    /* Increase the height as desired */
+    overflow: hidden;
+    /* margin-bottom: 8px; */
+}
+
+.round-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    right: 50px;
+    /* border-radius: 50%; */
+}
+
+.user-name {
+    font-weight: bold;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.uppercase-and-bolder {
+    text-transform: uppercase;
+    font-weight: 540;
+    text-align: center !important;
+    /* Set an initial font size */
+    font-size: 14pt;
+}
+
+
+/* Media query for screens larger than 768px */
+
+@media (min-width: 768px) {
+    .uppercase-and-bolder {
+        font-size: 5pt;
+        font-weight: bold;
+        text-align: center !important;
+        /* Increase font size for larger screens */
+    }
+}
+
+
+/* Media query for screens larger than 1200px */
+
+@media (min-width: 1200px) {
+    .uppercase-and-bolder {
+        font-size: 14pt;
+        text-align: center !important;
+        margin-left: 28rem;
+        /* Increase font size further for very large screens */
+    }
+}
+
+
+/* Media query for small screens (e.g., mobile devices) */
+
+@media (max-width: 600px) {
+    .uppercase-and-bolder {
+        font-size: 7pt;
+        font-weight: bold;
+        /* Decrease font size for small screens to prevent text cutoff */
+    }
+}
+
+.mdc-list-item.mdc-list-item--with-one-line .mdc-list-item__start {
+    align-self: center;
+    margin-top: 2;
+    margin: 0;
+    margin-top: 0px;
+}
+
+.sidebar-text1[_ngcontent-ng-c1626436469] {
+    margin-left: 0px !important;
+    color: white !important;
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.user-photo-button {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    /* margin-right: 10px; */
+}
+
+.user-photo {
+    width: 95px;
+    height: 35px;
+}
+
+.user-profile-button {
+    width: 32px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    /* align-items: center; */
+    max-width: 100%;
+    font-size: 12px;
+    position: absolute;
+    margin-right: 0px;
+    /* Allow the user name to be as wide as the available space */
+}
+
+.user-name-button {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    /* Adjust the font size as needed */
+    max-width: calc(100% - 42px);
+    /* Adjust the value as needed to fit the text */
+}
+
+.uppercase-and-bolder[_ngcontent-ng-c766931773] {
+    text-transform: uppercase;
+    font-weight: 550;
+    font-size: 17px;
+}
+
+@media (max-width: 600px) {
+    * {
+        overflow-y: hidden;
+        overflow-x: hidden;
+        /* margin-right: -219px; */
+        margin-right: 0px
+    }
+}
+
+
+/* 
+.form {
+    overflow-x: hidden;
+} */
+
+.mat-sidenav-container[_ngcontent-ng-c3736203561],
+.mat-sidenav-content[_ngcontent-ng-c3736203561] {
+    height: 93%;
+}
+
+.navbar-logo {
+    /* margin: 0;
+    display: block !important;
+    max-height: 40%;
+    margin: 0 auto; */
+    margin: 0;
+    /* Remove any margin */
+    max-width: 100%;
+    max-height: 40%;
+    height: auto;
+    margin-left: 20%;
+    /* margin-left: 28rem; */
+}
