@@ -1,0 +1,25 @@
+.mat-column-Company,
+.mat-column-Contact,
+.mat-column-City,
+.mat-column-Pincode,
+.mat-column-GstNumber,
+.mat-column-actions,
+.mat-column-CompanyCode {
+    text-align: left;
+    justify-content: center;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #5c5b5b;
+}
+
+.mat-column-Pincode {
+    text-align: right;
+    justify-content: flex-start !important;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #5c5b5b;
+    word-break: break-word;
+    border-right: 1px solid #5c5b5b;
+}

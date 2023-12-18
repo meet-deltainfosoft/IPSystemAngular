@@ -1,0 +1,92 @@
+<!-- <form> -->
+<mat-card>
+    <mat-card-header class="example-header mt-2 ">
+        <div class="example-title ">
+            <mat-icon class="example-icon ">account_circle</mat-icon>
+            {{dialog_title}}
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-lg-3 col-sm-12">
+                <mat-form-field>
+                    <mat-label>Parent Menu</mat-label>
+                    <mat-select [(ngModel)]="selectedMenuId" placeholder="Menu" required>
+                        <mat-option *ngFor="let option of ParentMenuList" [value]="option.ParentId">
+                            {{ option.Description }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+                <button mat-flat-button color="primary" class="example-button " [disabled]="formUserRights.invalid " (click)="GetAllUserRights() ">{{btnText}}</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="no-records" *ngIf="_UserRightsTableDataSource && _UserRightsTableDataSource.data && _UserRightsTableDataSource.data.length === 0">
+                No Records Found
+            </div>
+            <div class="col-12 mat-table-container" *ngIf="_UserRightsTableDataSource && _UserRightsTableDataSource.data && _UserRightsTableDataSource.data.length > 0">
+                <mat-checkbox color="primary" style="font-weight: bolder;" [(ngModel)]="selectAllCheckbox" (change)="toggleSelectAll()" #selectAllCheckboxRef><span style="font-weight: bolder;font-family: Verdana, Geneva, Tahoma, sans-serif;"> Select All</span></mat-checkbox>
+                <mat-table [dataSource]="_UserRightsTableDataSource" matSort class="table-width table-bordered">
+                    <ng-container matColumnDef="SRNo">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2">
+                            SR No
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.SRNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ChildDescription">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Menu
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.ChildDescription}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="AllowAll">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2" color="primary"> AllowAll
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2">
+                            <!-- <mat-checkbox [formControlName]="element.AllowAll" color="primary"></mat-checkbox> -->
+                            <mat-checkbox color="primary" (change)="checkAllPermissions(element)" [(ngModel)]="element.AllowAll" name="AllowAll"> </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="AllowInsert">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Allow Insert
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2">
+                            <!-- <mat-checkbox [formControlName]="element.AllowInsert" color="primary"></mat-checkbox> -->
+                            <mat-checkbox color="primary" [(ngModel)]="element.AllowInsert" name="AllowInsert"> </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="AllowUpdate">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Allow Update </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2">
+                            <!-- <mat-checkbox [formControlName]="element.AllowUpdate"></mat-checkbox> -->
+                            <mat-checkbox color="primary" [(ngModel)]="element.AllowUpdate" name="AllowUpdate"> </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="AllowDelete">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Allow Delete
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2">
+                            <!-- <mat-checkbox [formControlName]="element.AllowDelete"></mat-checkbox> -->
+                            <mat-checkbox color="primary" [(ngModel)]="element.AllowDelete" name="AllowDelete"> </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="_displayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="example-element-row"></tr>
+                </mat-table>
+
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="mt-2 " *ngIf="_UserRightsTableDataSource && _UserRightsTableDataSource.data && _UserRightsTableDataSource.data.length > 0">
+        <button mat-flat-button color="primary" class="example-button " (click)="submit()">Save</button>
+    </mat-card-actions>
+</mat-card>
+<!-- </form> -->

@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header h4">
+        {{ dialog_title }}
+    </div>
+    <div class="card-body" style="font-size: 12px !important">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Global Search">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <button mat-icon-button class="round-button" (click)="OpenPlantForm('InsertPlant','9D0C22DD-F4CF-4F0D-AC44-ED3679A118FB')" matTooltip="Add New Record" [disabled]="!matchingItem?.AllowInsert" style="display:none;">
+                    <mat-icon class="icon-white">add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mat-table-container">
+                <mat-table [dataSource]="_PlantTableDataSource" matSort class="table-width table-bordered">
+                    <ng-container matColumnDef="Plant">
+                        <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Plant
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="col-lg-2"> {{element.Plant}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef class="col-lg-1"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row" class="col-lg-1">
+                            <a mat-icon-button (click)="OpenPlantForm('GetPlantById', row.PlantId)" matTooltip="Edit Record" [disabled]="!matchingItem?.AllowUpdate">
+                                <mat-icon style="color: #0B3E61;">edit</mat-icon>
+                            </a>
+                        </mat-cell>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="_displayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="example-element-row"></tr>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

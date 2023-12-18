@@ -1,0 +1,55 @@
+<form [formGroup]="fromCategory">
+    <mat-card>
+        <mat-card-header class="example-header mt-2 ">
+            <div class="example-title ">
+                <mat-icon class="example-icon ">bar_chart</mat-icon>
+                {{dialog_title}}
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-lg-3 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>From Date</mat-label>
+                        <input matInput [matDatepicker]="FromDate" placeholder="dd/MM/yyyy" formControlName="FromDate">
+                        <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+                        <mat-datepicker #FromDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-3 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>To Date</mat-label>
+                        <input matInput [matDatepicker]="ToDate" placeholder="dd/MM/yyyy" formControlName="ToDate">
+                        <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+                        <mat-datepicker #ToDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-2 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>Plant</mat-label>
+                        <mat-select formControlName="PlantId" placeholder="Plant" required>
+                            <mat-option [value]="'2F9887FA-609D-4106-AED9-4684EDCB33C5'">Select All</mat-option>
+                            <mat-option *ngFor="let option of PlantList" [value]="option.PlantId">
+                                {{ option.Plant }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-sm-12">
+                    <button mat-flat-button color="primary" class="example-button" (click)="TopCategory('Download')" [disabled]="fromCategory.invalid" matTooltip="Download">
+                        <mat-icon>cloud_download</mat-icon> 
+                        {{btnText}}
+                      </button>
+
+                    <button mat-flat-button color="primary" class="example-button" (click)="TopCategory('View')" [disabled]="fromCategory.invalid" matTooltip="View">
+                        <mat-icon>visibility</mat-icon> 
+                        View
+                      </button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

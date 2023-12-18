@@ -1,0 +1,20 @@
+.mat-column-ChildDescription,
+.mat-column-AllowAll,
+.mat-column-AllowInsert,
+.mat-column-AllowUpdate,
+.mat-column-AllowDelete,
+.mat-column-SRNo {
+    text-align: left;
+    justify-content: center;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.no-records {
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center !important;
+    font-weight: bolder;
+}
