@@ -20,3 +20,11 @@
     margin-right: 0px;
     /* Adjust spacing as needed */
 }
+
+.readonly-wrapper {
+    cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+    pointer-events: none;
+}

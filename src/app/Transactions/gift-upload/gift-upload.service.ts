@@ -24,4 +24,14 @@ export class GiftUploadService {
       return Promise.reject(error);
     }
   }
+
+  async InsertGiftVersion(param: any): Promise<any> {
+    const http_url = this.constant.InsertGiftVersion();
+    try {
+      const response = await this.http.post(http_url, param, httpOptions).toPromise();
+      return Promise.resolve(response);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }

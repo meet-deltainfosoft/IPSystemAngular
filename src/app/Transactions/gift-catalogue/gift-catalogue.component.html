@@ -1,0 +1,53 @@
+<form [formGroup]="FormgiftCatalogue" style="max-width: auto;">
+    <mat-card>
+        <mat-card-header class="example-header mt-2">
+            <div class="example-title">
+                <mat-icon class="example-icon">card_giftcard</mat-icon>
+                {{dialog_title}}
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-lg-3 col-sm-12">
+                    <mat-form-field>
+                        <mat-label style="font-weight: 500;">Version</mat-label>
+                        <input matInput placeholder="Version" formControlName="Version" readonly="true">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <input type="file" name="file" id="inputGroupFile" required (change)="handleImport($event)" accept="application/pdf">
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <button (click)="import()" *ngIf="showButton" class="btn btn-primary float-right">
+                        Upload PDF  <i class="fa fa-download"></i>
+                      </button>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12 mat-table-container">
+                    <mat-table [dataSource]="_GiftCatalogueTableDataSource" matSort class="table-width table-bordered">
+                        <ng-container matColumnDef="Version">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Version</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2"> {{ element.Version }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="GiftCataloguePath">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef class="col-lg-2"> Download Catalogue</mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="col-lg-2">
+                                <img src="assets/pdf.png" (click)="PDFDownload(element.GiftCataloguePath)" style="height: 40px;width: 40px;cursor: pointer;" matTooltip="Download Catalogue">
+                            </mat-cell>
+
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="_displayColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: _displayColumns;" class="example-element-row"></tr>
+                    </mat-table>
+                    <!-- <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+                    </mat-paginator> -->
+                </div>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

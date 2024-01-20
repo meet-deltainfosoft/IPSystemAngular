@@ -12,9 +12,10 @@ const httpOptions = {
 })
 
 export class constant {
-  static readonly master_url: string = 'http://103.168.18.134/IPSystemAPI/'
+  //static readonly master_url: string = 'http://103.168.19.117/IPSystemAPI/'
+  static readonly master_url: string = 'http://103.168.19.117:81/'
   //static readonly master_url: string = 'http://103.168.18.134/'
- // static readonly master_url : string = 'http://localhost:7286/'
+  //static readonly master_url : string = 'http://localhost:7286/'
   //static readonly master_url : string = 'http://103.85.89.91:5000/'
   //static readonly master_url: string = 'http://192.168.5.14:5000/'
 
@@ -164,6 +165,9 @@ export class constant {
   static readonly GetDashBoardDropdDown: string = "api/DashBoard2/GetDashBoardDropdDown";
   GetDashBoardDropdDown(): string { return constant.master_url + constant.GetDashBoardDropdDown; }
 
+  static readonly GetLeaderBoardDetailDropdDown: string = "api/DashBoard2/GetLeaderBoardDetailDropdDown";
+  GetLeaderBoardDetailDropdDown(): string { return constant.master_url + constant.GetLeaderBoardDetailDropdDown; }
+
   static readonly DownloadGiftPDF: string = "api/DashBoard2/DownloadGiftPDF";
   DownloadGiftPDF(): string { return constant.master_url + constant.DownloadGiftPDF; }
   //ImportGiftPDF
@@ -228,6 +232,21 @@ export class constant {
   GetAllUser(): string { return constant.master_url + constant.GetAllUser; }
 
 
+  //Gift Catalogue
+  static readonly InsertGiftVersion: string = "api/GiftVersion/InsertGiftVersion";
+  InsertGiftVersion(): string { return constant.master_url + constant.InsertGiftVersion; } 
+  
+  static readonly UpdateGiftVersion: string = "api/GiftVersion/UpdateGiftVersion";
+  UpdateGiftVersion(): string { return constant.master_url + constant.UpdateGiftVersion; } 
+  
+  static readonly GetAllGiftVersion: string = "api/GiftVersion/GetAllGiftVersion";
+  GetAllGiftVersion(): string { return constant.master_url + constant.GetAllGiftVersion; }  
+
+  static readonly GetGiftVersionById: string = "api/GiftVersion/GetGiftVersionById";
+  GetGiftVersionById(): string { return constant.master_url + constant.GetGiftVersionById; }  
+
+  static readonly DownloadGiftVersionPDF: string = "api/GiftVersion/DownloadGiftVersionPDF";
+  DownloadGiftVersionPDF(): string { return constant.master_url + constant.DownloadGiftVersionPDF; }  
 
   // constructor(private datePipe: DatePipe) { }
   //Guid Creation Function

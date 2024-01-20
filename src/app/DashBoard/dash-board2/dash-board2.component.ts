@@ -347,12 +347,11 @@ export class DashBoard2Component implements OnInit {
         const downloadURL = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = downloadURL;
-        link.download = 'gift.pdf';
+        link.download = 'giftCatalogue.pdf';
         link.click();
       },
       (error) => {
         console.error('An error occurred:', error);
-        // Handle the error, e.g., show an error message to the user
       }
     );
   }

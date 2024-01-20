@@ -22,4 +22,15 @@ export class LeaderboardDetailService {
       return Promise.reject(error);
     }
   }
+
+
+  async GetLeaderBoardDetailDropdDown():Promise<any> {
+    const http_url = this.constant.GetLeaderBoardDetailDropdDown();
+    try {
+      const response = await this.http.get(http_url, httpOptions).toPromise();
+      return Promise.resolve(response);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }

@@ -10,7 +10,6 @@ import { Kaizen } from './kaizen';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatCheckbox } from '@angular/material/checkbox';
 
-
 export const MY_DATE_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -22,9 +21,6 @@ export const MY_DATE_FORMATS = {
     monthYearA11yLabel: 'MMMM YYYY'
   },
 };
-
-
-
 
 @Component({
   selector: 'app-kaizen-forms',
@@ -72,7 +68,6 @@ export class KaizenFormsComponent implements OnInit {
   IsReadOnly: boolean = false;
   number: string = "";
 
-
   constructor(private fb: FormBuilder, public validationService: ValidatorsService, private router: Router,
     private kaizenServices: KaizenService, private snackBar: MatSnackBar, private constant: constant, private datePipe: DatePipe, private route: ActivatedRoute,) {
     this.formKaizen = this.fb.group({
@@ -101,8 +96,9 @@ export class KaizenFormsComponent implements OnInit {
         const selectedPlant = this.formKaizen?.controls['Plant']?.value;
         this.DepartmentFilter = this.department.filter((x: { PlantId: any; }) =>
           x.PlantId == selectedPlant);
-      }),
-      this.initializeFormControls();
+      })
+      //,
+      //this.initializeFormControls();
   }
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -129,7 +125,6 @@ export class KaizenFormsComponent implements OnInit {
       this.btnText = "Approve";
       this.IsReadOnly = true;
     }
-
   }
 
   async submit() {
@@ -188,8 +183,6 @@ export class KaizenFormsComponent implements OnInit {
   }
 
 
-  filterDepartment(event: any) {
-  }
 
   getCheckedCategoryIds(): string {
     const checkedCategoryIds: string[] = [];
@@ -203,42 +196,54 @@ export class KaizenFormsComponent implements OnInit {
   }
 
   async GetKaizenById() {
-
+    try {
     var response = await this.kaizenServices.GetKaizenById(this.KaizenId);
-    if (response && response.length >0) {
-      this.formKaizen.controls["Number"].setValue(response.data.response[0].No);
-      //this.formKaizen.controls["Department"].setValue(response.data.response[0].DepartmentId);
-      this.formKaizen.controls["Company"].setValue(response.data.response[0].CompanyId);
-      this.formKaizen.controls["Plant"].setValue(response.data.response[0].PlantId);
-      this.formKaizen.controls["Totem"].setValue(response.data.response[0].Totem);
-      this.formKaizen.controls["CostSaving"].setValue(response.data.response[0].CostSaving);
-      this.formKaizen.controls["Status"].setValue(response.data.response[0].Status);
-      this.formKaizen.controls["ResponsibleUser"].setValue(response.data.response[0].ResposibleUserId);
-      this.formKaizen.controls["ImplementedDate"].setValue(response.data.response[0].ImplementedDate);
-      this.formKaizen.controls["Proposal"].setValue(response.data.response[0].Proposal);
-      this.formKaizen.controls["Results"].setValue(response.data.response[0].Result);
-      this.formKaizen.controls["Scope"].setValue(response.data.response[0].Scope);
-      this.formKaizen.controls["JustDID"].setValue(response.data.response[0].JustDidIt);
-      this.formKaizen.controls["User"].setValue(response.data.response[0].UserId);
-      this.formKaizen.controls["ManagerId"].setValue(response.data.response[0].ManagerId);
-      this.formKaizen.controls["LevelLabel"].setValue(response.data.response[0].LevelLabel);
-      this.formKaizen.controls["KWLabel"].setValue(response.data.response[0].KWLabel);
-      this.formKaizen.controls["PointLabel"].setValue(response.data.response[0].PointsLabel);
+    // if (response.data.response[0] && response.data.response[0].length > 0) {
+      this.formKaizen.controls["Number"].patchValue(response.data.response[0].No);
+      //this.formKaizen.controls["Department"].patchValue(response.data.response[0].DepartmentId);
+      this.formKaizen.controls["Company"].patchValue(response.data.response[0].CompanyId);
+      this.formKaizen.controls["Plant"].patchValue(response.data.response[0].PlantId);
+      this.formKaizen.controls["Totem"].patchValue(response.data.response[0].Totem);
+      this.formKaizen.controls["CostSaving"].patchValue(response.data.response[0].CostSaving);
+      this.formKaizen.controls["Status"].patchValue(response.data.response[0].Status);
+      this.formKaizen.controls["ResponsibleUser"].patchValue(response.data.response[0].ResposibleUserId);
+      this.formKaizen.controls["ImplementedDate"].patchValue(response.data.response[0].ImplementedDate);
+      this.formKaizen.controls["Proposal"].patchValue(response.data.response[0].Proposal);
+      this.formKaizen.controls["Results"].patchValue(response.data.response[0].Result);
+      this.formKaizen.controls["Scope"].patchValue(response.data.response[0].Scope);
+      this.formKaizen.controls["JustDID"].patchValue(response.data.response[0].JustDidIt);
+      this.formKaizen.controls["User"].patchValue(response.data.response[0].UserId);
+      this.formKaizen.controls["ManagerId"].patchValue(response.data.response[0].ManagerId);
+      this.formKaizen.controls["LevelLabel"].patchValue(response.data.response[0].LevelLabel);
+      this.formKaizen.controls["KWLabel"].patchValue(response.data.response[0].KWLabel);
+      this.formKaizen.controls["PointLabel"].patchValue(response.data.response[0].PointsLabel);
       this.Category = [];
       this.Category = response.data.categories;
       this.categoriesIds = this.Category;
       this.selectedCategoryIds = response.data.categories
         .filter((category: { isSelected: any; }) => category.isSelected === "true")
         .map((category: { CategoryId: any; }) => category.CategoryId);
-    } else {
-      console.log("Data Is:",response.data);
-      
-      this.snackBar.open(response.length, "close", {
-        duration: 2000,
-        panelClass: ['error-snack-bar'],
-        verticalPosition: "top",
-      });
     }
+    catch (error) {
+     console.log(error);
+     this.snackBar.open("OOps Something went wrong", "close", {
+          duration: 2000,
+          panelClass: ['error-snack-bar'],
+          verticalPosition: "top",
+        });
+      }
+     
+    
+   // } 
+    // else {
+    //   console.log("Data Is:", response.data);
+
+    //   this.snackBar.open(response.length, "close", {
+    //     duration: 2000,
+    //     panelClass: ['error-snack-bar'],
+    //     verticalPosition: "top",
+    //   });
+    // }
   }
 
 
@@ -254,7 +259,7 @@ export class KaizenFormsComponent implements OnInit {
     this.TotemFilter = this.Totem;
     this.ResponsibleUser = response.data.employee;
     this.ResponsibleUserFilter = this.ResponsibleUser;
-    this.formKaizen.controls["Number"].setValue(response.data.ipNumber[0].IPNumber);
+    //this.formKaizen.controls["Number"].setValue(response.data.ipNumber[0].IPNumber);
     this.selectControl.disable();
     this.User = response.data.employee;
     this.UserFilter = this.User;
@@ -268,9 +273,6 @@ export class KaizenFormsComponent implements OnInit {
 
   onCheckedItem() {
     var a = this.formKaizen.get('CategoryId') as FormArray;
-    console.log("a is:", a.value);
-
-
   }
 
   isSelected(categoryId: string): boolean {
@@ -284,9 +286,7 @@ export class KaizenFormsComponent implements OnInit {
     this.TotemFilter = inputValue ? this.Totem.filter((opt: { Totem: string }) =>
       opt.Totem.toLowerCase().includes(inputValue)) : this.Totem;
   }
-  initializeFormControls() {
-
-  }
+  
   filterUser(event: any) {
     const inputElement = event.target as HTMLInputElement | null;
     const inputValue = (inputElement?.value.trim().toLowerCase() || '').toLowerCase();
@@ -340,9 +340,7 @@ export class KaizenFormsComponent implements OnInit {
 
   openDynamicUrl() {
     this.number = this.formKaizen.controls["Number"].value;
-    const url = `https://gf-web-ipsystemwebapp-p-azwe.azurewebsites.net/Home/AddEdit/${this.number}?source=HomeController#loaded`;
-    console.log(url);
-
+    const url = `https://gf-web-ipsystemwebapp-p-azwe.azurewebsites.net/Home/AddEdit/${this.formKaizen.controls["Number"].value}?source=HomeController#loaded`;
     window.open(url, '_blank');
   }
 }

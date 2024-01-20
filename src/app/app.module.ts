@@ -78,6 +78,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { UserFormsComponent } from './Master/Users/user-forms/user-forms.component';
 import { UserComponent } from './Master/Users/user/user.component';
 import { LeaderBoardDetailComponent } from './DashBoard/leader-board-detail/leader-board-detail.component';
+import { GiftCatalogueComponent } from './Transactions/gift-catalogue/gift-catalogue.component';
 
 
 
@@ -118,6 +119,7 @@ import { LeaderBoardDetailComponent } from './DashBoard/leader-board-detail/lead
     UserFormsComponent,
     UserComponent,
     LeaderBoardDetailComponent,
+    GiftCatalogueComponent,
    
   ],
   imports: [

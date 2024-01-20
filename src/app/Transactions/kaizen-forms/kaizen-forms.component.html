@@ -16,21 +16,21 @@
                         <div class="col-lg-8 col-sm-12">
                             <mat-form-field>
                                 <mat-label>Company</mat-label>
-                                <mat-select [disabled]="isSelectDisabled" formControlName="Company" placeholder="Company" required>
-                                    <mat-option [disabled]="isSelectDisabled" *ngFor="let option of Company" [value]="option.CompanyId">{{ option.Company }}</mat-option>
+                                <mat-select formControlName="Company" placeholder="Company" required>
+                                    <mat-option [disabled]="isSelectDisabled" *ngFor="let option of Company" [value]="option.CompanyId" [readonly]="true">{{ option.Company }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
 
                         <div class="col-lg-4 col-sm-12">
                             <mat-label style="font-weight: 500;">Just DID IT</mat-label>
-                            <mat-checkbox color="primary" formControlName="JustDID" [readonly]="IsReadOnly"></mat-checkbox>
+                            <mat-checkbox color="primary" formControlName="JustDID" readonly></mat-checkbox>
                         </div>
 
                         <div class="col-lg-12 col-sm-12">
                             <mat-form-field>
                                 <mat-label style="font-weight: 500;">Proposal</mat-label>
-                                <input matInput placeholder="Proposal" formControlName="Proposal" [readonly]="IsReadOnly">
+                                <input matInput placeholder="Proposal" formControlName="Proposal" readonly>
                             </mat-form-field>
                         </div>
 
@@ -42,7 +42,7 @@
                         <div class="col-lg-12 col-sm-12">
                             <mat-form-field>
                                 <mat-label>Results/Benfits/Remarks</mat-label>
-                                <input matInput placeholder="Results/Benfits/Remarks" formControlName="Results" [readonly]="IsReadOnly">
+                                <input matInput placeholder="Results/Benfits/Remarks" formControlName="Results" readonly>
                             </mat-form-field>
                         </div>
                         <div class="col-lg-12 col-sm-12">
@@ -54,21 +54,21 @@
                         <div class="col-lg-4" *ngIf="IsApprovedData">
                             <mat-form-field>
                                 <mat-label>Level</mat-label>
-                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="LevelLabel">
+                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="LevelLabel" readonly>
                             </mat-form-field>
                         </div>
 
                         <div class="col-lg-4" *ngIf="IsApprovedData">
                             <mat-form-field>
                                 <mat-label>Point</mat-label>
-                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="PointLabel">
+                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="PointLabel" readonly>
                             </mat-form-field>
                         </div>
 
                         <div class="col-lg-4" *ngIf="IsApprovedData">
                             <mat-form-field>
                                 <mat-label>KW</mat-label>
-                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="KWLabel">
+                                <input matInput placeholder="Scope & Plan For Horizontal Development" formControlName="KWLabel" readonly>
                             </mat-form-field>
                         </div>
                     </div>
@@ -82,21 +82,21 @@
                                 <mat-label>User</mat-label>
                                 <mat-select formControlName="User" placeholder="User" required>
                                     <mat-form-field>
-                                        <input class="align-element" placeholder="Search User" matInput required (keyup)="filterUser($event)" />
+                                        <input class="align-element" placeholder="Search User" matInput required (keyup)="filterUser($event)" readonly />
                                     </mat-form-field>
-                                    <mat-option *ngFor="let option of UserFilter" [value]="option.EmployeId">{{ option.Employee }}</mat-option>
+                                    <mat-option *ngFor="let option of UserFilter" [value]="option.EmployeId" disabled>{{ option.Employee }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
 
                         <div class="col-lg-6 col-sm-12">
-                            <mat-form-field>
+                            <mat-form-field class="readonly-wrapper">
                                 <mat-label>Responsible User</mat-label>
-                                <mat-select formControlName="ResponsibleUser" placeholder="Responsible User">
+                                <mat-select formControlName="ResponsibleUser" placeholder="Responsible User" class="readonly-block" [disabled]="true">
                                     <mat-form-field>
                                         <input class="align-element" placeholder="Responsible User" matInput (keyup)="filterResponsible($event)" />
                                     </mat-form-field>
-                                    <mat-option *ngFor="let option of ResponsibleUserFilter" [value]="option.EmployeId">{{ option.Employee }}</mat-option>
+                                    <mat-option *ngFor="let option of ResponsibleUserFilter" [value]="option.EmployeId" disabled>{{ option.Employee }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -109,7 +109,7 @@
                                     <mat-form-field>
                                         <input class="align-element" placeholder="Manger" matInput required (keyup)="filterManager($event)" />
                                     </mat-form-field>
-                                    <mat-option *ngFor="let option of ManagerFilter" [value]="option.ManagerId">{{ option.Manager }}</mat-option>
+                                    <mat-option *ngFor="let option of ManagerFilter" [value]="option.ManagerId" disabled>{{ option.Manager }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -127,7 +127,7 @@
                             <mat-form-field>
                                 <mat-label>Plant</mat-label>
                                 <mat-select formControlName="Plant" placeholder="Plant" required>
-                                    <mat-option *ngFor="let option of PlantS" [value]="option.PlantId">{{ option.Plant }}</mat-option>
+                                    <mat-option *ngFor="let option of PlantS" [value]="option.PlantId" disabled>{{ option.Plant }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -138,7 +138,7 @@
                                     <mat-form-field>
                                         <input class="align-element" placeholder="Search Totem" matInput required (keyup)="filterTotem($event)" />
                                     </mat-form-field>
-                                    <mat-option *ngFor="let option of TotemFilter" [value]="option.TotemId">{{ option.Totem }}</mat-option>
+                                    <mat-option *ngFor="let option of TotemFilter" [value]="option.TotemId" disabled>{{ option.Totem }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -160,7 +160,7 @@
                         <div class="col-lg-3 col-sm-12">
                             <mat-form-field>
                                 <mat-label>Implemented Date</mat-label>
-                                <input matInput [matDatepicker]="ImplementedDate" placeholder="YYYY-MM-DD" formControlName="ImplementedDate">
+                                <input matInput [matDatepicker]="ImplementedDate" placeholder="YYYY-MM-DD" formControlName="ImplementedDate" [disabled]="false">
                                 <mat-datepicker-toggle matSuffix [for]="ImplementedDate"></mat-datepicker-toggle>
                                 <mat-datepicker #ImplementedDate></mat-datepicker>
                             </mat-form-field>
@@ -170,7 +170,7 @@
                             <mat-form-field>
                                 <mat-label>Current Status</mat-label>
                                 <mat-select formControlName="Status" placeholder="Current Status">
-                                    <mat-option *ngFor="let option of Status" [value]="option.StatusId">{{ option.Status }}</mat-option>
+                                    <mat-option *ngFor="let option of Status" [value]="option.StatusId" disabled>{{ option.Status }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

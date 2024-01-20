@@ -30,6 +30,7 @@ import { BestKaizenComponent } from './Reports/best-kaizen/best-kaizen.component
 import { UserFormsComponent } from './Master/Users/user-forms/user-forms.component';
 import { UserComponent } from './Master/Users/user/user.component';
 import { LeaderBoardDetailComponent } from './DashBoard/leader-board-detail/leader-board-detail.component';
+import { GiftCatalogueComponent } from './Transactions/gift-catalogue/gift-catalogue.component';
 
 const routes: Routes = [
   {
@@ -98,8 +99,11 @@ const routes: Routes = [
     component: ApprovalComponent
   },
   {
+    // path: "giftupload",
+    // component: GiftUploadComponent
+
     path: "giftupload",
-    component: GiftUploadComponent
+    component: GiftCatalogueComponent
   },
   {
     path: "redeemForms",

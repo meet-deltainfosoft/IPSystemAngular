@@ -1,17 +1,19 @@
-.mat-column-Number {
+.mat-column-Version {
     text-align: left;
     justify-content: center;
     align-self: stretch;
     padding-left: 5px;
     padding-right: 5px;
     border-right: 1px solid #5c5b5b;
+    width: 300px !important;
 }
 
-.mat-column-CostSaving {
-    text-align: right;
+.mat-column-GiftCataloguePath {
+    text-align: center;
     justify-content: center;
     align-self: stretch;
     padding-left: 5px;
     padding-right: 5px;
+    width: 50px !important;
     border-right: 1px solid #5c5b5b;
 }
