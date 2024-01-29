@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   loginStatus = new BehaviorSubject<boolean>(false);
   submenuOpen: boolean = false;
-  userName: string = "Mohamed Imran Shahul Hameed ABCC";
+  userName: string = "Meet Padhiyar";
   Company: string = "Delta kaizen";
   menu: Menu = {}
 
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }];
 
 
-    public ReportsMenu: MenuItem[] =
+  public ReportsMenu: MenuItem[] =
     [{
       ChildId: '',
       ChildDescription: 'Company',
@@ -91,12 +91,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.menu.UserId = this.constant.GetLocalStorage("userId");
     var response = await this.NavBarServices.GetAllMenu(this.menu);
     console.log(response.data);
-    
+
     this.masterMenu = response.data.masters;
     this.TransactionsMenu = response.data.transaction;
     this.ReportsMenu = response.data.reports;
 
-     this.menuService.setMenuData(response.data.masters);
+    this.menuService.setMenuData(response.data.masters);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -110,4 +110,3 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 }
-  

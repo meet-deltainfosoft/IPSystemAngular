@@ -20,10 +20,9 @@ export class AppComponent implements OnInit, AfterViewInit{
     });
   }
   ngOnInit() {
-    this.updateCurrentUrl(); // Update the currentUrl on component initialization
+    this.updateCurrentUrl();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Add a small delay before updating currentUrl to capture the latest URL
         setTimeout(() => {
           this.updateCurrentUrl();
         }, 100);

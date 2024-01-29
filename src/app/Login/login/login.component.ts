@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   async Login() {
+    debugger;
     this.ObjLogin.UserName = this.formLogin.controls["Username"].value;
     this.ObjLogin.Password = this.formLogin.controls["Password"].value;
     var response = await this.loginServices.UserAuthentication(this.ObjLogin);
